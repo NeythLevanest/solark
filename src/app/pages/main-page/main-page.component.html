@@ -1,0 +1,19 @@
+<div>
+    <div class = "map-header">
+        <app-nav-bar></app-nav-bar>
+        <div class="form-group search-bar">
+            <label></label>
+            <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+        </div>
+    </div>
+    <div class = "map-body">
+        <app-map-page></app-map-page>
+    </div>
+    <div class = "map-footer">
+        <div>
+            <button class="btn btn-primary" type="button">Consultar</button>
+        </div>
+    </div>
+</div>
+       
+   

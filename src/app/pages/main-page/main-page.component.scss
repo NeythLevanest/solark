@@ -181,6 +181,9 @@ input[type='checkbox'] { display: none; overflow: hidden;}
 .hiddenCharBY{
     display: none;
 }
+.hiddenModalPOND{
+    display: none;
+}
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
@@ -197,4 +200,11 @@ input[type='checkbox'] { display: none; overflow: hidden;}
         text-align: center;
         font-size: 1.5rem;
     }
+  }
+
+
+  .chart-size
+  {
+      width: 20vh !important;
+      height: 100% !important;
   }

@@ -72,39 +72,40 @@
 
                 <div class="container-rigth vertical-scroll">
                     <div>
-                        
-                        <div class="" [ngClass]="_chartService.hiddenModalBD">
-                            <div>
-                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
-                                </label>
+                        <div class="card" [ngClass]="_chartService.hiddenModalPOND">
+                            <label>Ahorro Generado del Mes:$ {{ahorroMensual}}   Producción promedio de Energía:{{potenciaMensual}} Watts
+                            </label>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <canvas class = "chart-size" id="canvas4">
+                                        {{chartPROM}}
+                                    </canvas>
+                                </div>
+    
+                                <div class="col-sm">
+                                    <canvas class = "chart-size" id="canvas5">
+                                        {{chartSAVE}}
+                                    </canvas>
+                                </div>
                             </div>
+                           
+                        </div>
+                        <div class="" [ngClass]="_chartService.hiddenModalBD">
                             <canvas id="canvas">
                                 {{chartDaily}}
                             </canvas>
                         </div>
                         <div class="" [ngClass]="_chartService.hiddenModalBW">
-                            <div>
-                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
-                                </label>
-                            </div>
                             <canvas id="canvas3">
                                 {{chartWeek}}
                             </canvas>
                         </div>
                         <div class="" [ngClass]="_chartService.hiddenModalBM">
-                            <div>
-                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
-                                </label>
-                            </div>
                             <canvas id="canvas1">
                                 {{chartMensual}}
                             </canvas>
                         </div>
                         <div class="" [ngClass]="_chartService.hiddenModalBY">
-                            <div>
-                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
-                                </label>
-                            </div>
                             <canvas id="canvas2">
                                 {{chartAnual}}
                             </canvas>

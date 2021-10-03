@@ -8,6 +8,7 @@ export class ChartService {
   public hiddenModalBW:string='hiddenCharBW';
   public hiddenModalBM:string='hiddenCharBM';
   public hiddenModalBY:string='hiddenCharBY';
+  public hiddenModalPOND:string='hiddenModalPOND';
 
 
   constructor() { }
@@ -42,5 +43,13 @@ export class ChartService {
   //value is empty
   mostrarCharByYear() {
     this.hiddenModalBY = ''; 
+  }
+
+  ocultarCharByPROM() {
+    this.hiddenModalPOND = 'hiddenCharBY'; 
+  }
+  //value is empty
+  mostrarCharByPROM() {
+    this.hiddenModalPOND = ''; 
   }
 }

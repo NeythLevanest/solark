@@ -34,21 +34,39 @@ export class MainPageComponent implements OnInit {
   chartMensual!:Chart;
   chartAnual!:Chart;
   chartWeek!:Chart;
+  chartPROM!:Chart;
+  chartSAVE!:Chart;
   /*FIN Gráficas segmentadas por frecuencia*/
   
   /*Listas con datos procesados por frecuencia*/
   clavesAñoMesDia:any[]=[];
   valoresAñoMesDia:any[]=[];
+  clavesT2MAñoMesDia:any[]=[];
+  valoresT2MAñoMesDia:any[]=[];
+
 
   clavesAñoMes:any[]=[];
   valoresAñoMes:any[]=[];
+  clavesT2MAñoMes:any[]=[];
+  valoresT2MAñoMes:any[]=[];
 
   clavesAño:any[]=[];
   valoresAño:any[]=[];
+  clavesT2MAño:any[]=[];
+  valoresT2MAño:any[]=[];
 
   clavesSemana:any[]=[];
   valoresSemana:any[]=[];
+  clavesT2MSemana:any[]=[];
+  valoresT2MSemana:any[]=[];
   /*FIN Listas con datos procesados por frecuencia*/
+
+ /*VARIABLES DE RESULTADO */
+  potenciaMensual:number = 0;
+  ahorroMensual:number = 0;
+  potenciaMensualMáxima:number = 0;
+  ahorroMensualMáxima:number = 0;
+ /*VARIABLES DE RESULTADO */
 
   constructor(
     private mapsAPILoader:MapsAPILoader,
@@ -168,12 +186,19 @@ export class MainPageComponent implements OnInit {
 
         this.clavesAñoMesDia = Object.keys(this.parameter.ALLSKY_SFC_SW_DWN);
         this.valoresAñoMesDia = Object.values(this.parameter.ALLSKY_SFC_SW_DWN);
+        this.clavesT2MAñoMesDia = Object.keys(this.parameter.T2M);
+        this.valoresT2MAñoMesDia = Object.values(this.parameter.T2M);
+
         console.log(this.valoresAñoMesDia);
+
+
+        this.calculaPotenciaPromedioSolar(this.valoresAñoMesDia, this.valoresAñoMesDia);
 
         this.procesarDatosPorSemana()
         this.procesarDatosPorMes();
         this.procesarDatosPorAño();
         this.generateChartByWeek();
+        this.generateChartPROM();
 
       },
       (error:any) => {
@@ -222,6 +247,9 @@ export class MainPageComponent implements OnInit {
     this.clavesAñoMes = [];
     this.valoresAñoMes = [];
 
+    this.clavesT2MAñoMes = [];
+    this.valoresT2MAñoMes = [];
+
     let mesUno;
     let contador = 0;
     let flagControl = true;
@@ -230,10 +258,16 @@ export class MainPageComponent implements OnInit {
     let acumuladorMensual = 0;
     let mesDos;
 
+    //IRRADIANCIA
     let clavesList = this.clavesAñoMesDia;
     let valoresList = this.valoresAñoMesDia;
 
+    //TEMPERATURA
+    let valoresT2MList = this.valoresT2MAñoMesDia;
+    let acumuladorT2MMesnual = 0;
+
     let promedioMensual=0;
+    let promedioMensulaT2M = 0;
 
     mesUno = clavesList[0].substr(0,6);
 
@@ -244,6 +278,7 @@ export class MainPageComponent implements OnInit {
       {
         contadorMensual +=1;
         acumuladorMensual +=valoresList[contador];
+        acumuladorT2MMesnual +=valoresT2MList[contador];
         contador += 1;
 
         mesDos =  clavesList[contador].substr(0,6);
@@ -253,12 +288,17 @@ export class MainPageComponent implements OnInit {
         }
       }
       promedioMensual = acumuladorMensual/contadorMensual;
+      promedioMensulaT2M = acumuladorT2MMesnual/contadorMensual;
+      
       this.clavesAñoMes.push(mesUno);
+      this.clavesT2MAñoMes.push(mesUno);
       this.valoresAñoMes.push(promedioMensual);
+      this.valoresT2MAñoMes.push(promedioMensulaT2M);
       mesUno = mesDos;
 
       contadorMensual = 0;
       acumuladorMensual = 0;
+      acumuladorT2MMesnual = 0;
     }
     console.log(this.clavesAñoMes);
     console.log(this.valoresAñoMes);
@@ -314,6 +354,60 @@ export class MainPageComponent implements OnInit {
 
 
   /*Método para crear GRÁFICO de Datos POR DÍA de IRRADIANCIA*/
+
+  generateChartPROM()
+  {
+    this._chartService.mostrarCharByPROM();
+
+    if(this.chartPROM)
+    {
+      this.chartPROM.destroy();
+    }
+    if(this.chartSAVE)
+    {
+      this.chartSAVE.destroy();
+    }
+    
+    this.chartPROM = new Chart('canvas4',{
+          type:'doughnut',
+          data: {
+            labels:["Promedio", "Máximo"],
+            datasets:[
+              {
+                label:"Promedio de Potencia Mensual",
+                data: [this.potenciaMensual, this.potenciaMensualMáxima],
+                backgroundColor:[
+                  'rgb(0, 114, 255)',
+                  'rgb(245, 245, 245)'
+                ],
+                hoverOffset:2,
+                weight:0.5
+              }
+            ]
+          }
+    });
+
+    this.chartSAVE = new Chart('canvas5',{
+      type:'doughnut',
+      data: {
+        labels:["Ahorro", "Máximo"],
+        datasets:[
+          {
+            label:"Ahorro Mensual",
+            data: [this.ahorroMensual, this.ahorroMensualMáxima],
+            backgroundColor:[
+              'rgb(101, 255, 0)',
+              'rgb(245, 245, 245)'
+            ],
+            hoverOffset:2,
+            weight:0.5
+          }
+        ]
+      }
+    });
+
+    
+  }
   generateChartByDay()
   {
     this._chartService.mostrarCharByDay();
@@ -442,6 +536,96 @@ export class MainPageComponent implements OnInit {
     this._chartService.ocultarCharByMonth();
     this._chartService.ocultarCharByYear();
     this._chartService.ocultarCharByDay();
+  }
+
+
+
+  calculaPotenciaPromedioSolar(irradiancia:number[], t2m:number[])
+  {
+    //
+
+    const VPMAX_STC=40.0
+    const IPMAX_STC=10.1
+    const VOC_STC=48.7
+    const ISC_STC=10.5
+    const TEMP_STC=25
+    const NOCT=44
+    const TEMP_COEF_ISC=0.03
+    const TEMP_COEF_IMP=-0.02
+    const TEMP_COEF_VOC=-0.3
+    const TEMP_COEF_VMP=-0.43
+    const TEMP_COEF_PMAX=-0.38
+
+    const T2M_RANGE=18.75
+    const ALLSKY_SFC_SW_DWN=400
+
+    //VARIABLES DE RESULTADO
+    let tCELL = 0;
+    let deltaT = 0;
+    let vmpT = 0;
+    let impT = 0;
+    var potencia = 0;
+
+    let tCELLMax = 0;
+    let deltaTMax = 0;
+    let vmpTMax = 0;
+    let impTMax = 0;
+    var potenciaMax = 0;
+
+    //Cáculo de promedio
+    let acumuladorIrradiancia = 0;
+    let acumuladorT2M = 0;
+    let promedioIrradiancia = 0;
+    let promedioT2M = 0;
+
+  
+
+    console.log("lista irradiancia"+ irradiancia);
+    for(let i=0; i<irradiancia.length; i++)
+    {
+      acumuladorIrradiancia +=irradiancia[i];
+      acumuladorT2M         +=t2m[i];
+    }
+    console.log("acumulador Irradiancia:" + acumuladorIrradiancia);
+    console.log("acumulador Temperatura:" + acumuladorT2M);
+
+    promedioIrradiancia = acumuladorIrradiancia/(irradiancia.length);
+    promedioT2M         = acumuladorT2M/(t2m.length);
+
+
+    //T_CELL=T2M_RANGE+((NOCT-20)/(800))*ALLSKY_SFC_SW_DWN	               
+    //PMP=((VMP*IMP)/100)*12*30
+    tCELL = promedioT2M +((NOCT-20)/800)*promedioIrradiancia;
+    deltaT = tCELL - TEMP_STC;
+    vmpT  = VPMAX_STC*(1+((TEMP_COEF_VMP/100)*deltaT));
+    impT = IPMAX_STC*(1+((TEMP_COEF_IMP/100)*deltaT));
+
+    potencia = ((((vmpT*impT)/100)*12)*30);
+    
+    this.potenciaMensual = Number(potencia.toFixed(3));
+    this.ahorroMensual = potencia*0.1;
+    this.ahorroMensual = Number(this.ahorroMensual.toFixed(3));
+
+
+
+
+    tCELLMax = Math.max.apply(null, t2m) +((NOCT-20)/800)*Math.max.apply(null, irradiancia);
+    deltaTMax = tCELLMax - TEMP_STC;
+    vmpTMax  = VPMAX_STC*(1+((TEMP_COEF_VMP/100)*deltaTMax));
+    impTMax = IPMAX_STC*(1+((TEMP_COEF_IMP/100)*deltaTMax));
+
+    potenciaMax = ((((vmpTMax*impTMax)/100)*12)*30);
+
+    this.potenciaMensualMáxima = Number(potenciaMax.toFixed(3));;
+    this.ahorroMensualMáxima = potenciaMax*0.1;
+    this.ahorroMensualMáxima = Number(this.ahorroMensualMáxima.toFixed(3));;
+
+    /*DELTA_T=T_CELL-TEMP_STC 		      		                #DELTA DE TEMPERATURA
+    VMP=VPMAX_STC*(1+(TEMP_COEF_VMP/100)*DELTA_T) 		                #VOLTAJE DE MAXIMA POTENCIA
+    IMP=IPMAX_STC*(1+(TEMP_COEF_IMP/100)*DELTA_T)		                #CORRIENTE DE MAXIMA POTENCIA
+    PMP=((VMP*IMP)/100)*12*30						#PUNTO DE MAXIMA POTENCIA
+    DOLLAR=PMP*0.1
+    */
   }
 
 }

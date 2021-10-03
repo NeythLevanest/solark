@@ -10,6 +10,8 @@ import { app_routing } from './app.routes';
 import { MetricsPageComponent } from './pages/metrics-page/metrics-page.component';
 import { MetricsResultsComponent } from './pages/metrics-results/metrics-results.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { WrapCollapsibleComponent } from './pages/wrap-collapsible/wrap-collapsible.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
     MainPageComponent,
     MetricsPageComponent,
     MetricsResultsComponent,
-    NavBarComponent
+    NavBarComponent,
+    SignInComponent,
+    WrapCollapsibleComponent
   ],
   imports: [
     BrowserModule,

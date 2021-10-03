@@ -1,0 +1,29 @@
+.card-local-fmt{
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    border:none !important;
+}
+.center-display{
+ 
+    display: flex;
+    vertical-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.height-relative{
+    position:relative;
+    height: 80%;
+    padding-top: 10.0rem;
+}
+#img-banner-fmt{
+    width: 400px;
+    height: auto;
+}
+.text-padding h5{
+    padding: 50px 0 0 25%;
+}
+.alert
+{
+    margin-top: 1.2rem;
+}

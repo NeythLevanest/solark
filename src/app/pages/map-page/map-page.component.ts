@@ -1,7 +1,6 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Coordenada } from 'src/app/models/Coordenada';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
-import { google } from '@agm/core/services/google-maps-types';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class MapPageComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef!: ElementRef;
 
-
+ 
   ubicacionCentral!: Coordenada;
   ubicationSelected!: Coordenada;
   latitude!:number;
@@ -30,23 +29,21 @@ export class MapPageComponent implements OnInit {
     private ngZone:NgZone
   )
   {
-
+  
   }
 
   ngOnInit(): void {
     this.ubicacionCentral = new Coordenada(-1.8107958,-79.5041315, 14);
-    //load Places Autocomplete
-    /*this.mapsAPILoader.load().then(() => {
+    this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
-          let place =  google.maps.places.PlaceResult = autocomplete.getPlace();
-
+          let place:google.maps.places.PlaceResult = autocomplete.getPlace();
+          //this.place = autocomplete.getPlace();
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
@@ -58,7 +55,7 @@ export class MapPageComponent implements OnInit {
           this.zoom = 12;
         });
       });
-    });*/
+    });
   }
 
 
@@ -67,7 +64,7 @@ export class MapPageComponent implements OnInit {
     this.coordenadas.push(coord);
   }
 
-  private setCurrentLocation() {
+  public setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;

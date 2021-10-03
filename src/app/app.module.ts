@@ -23,7 +23,7 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({apiKey: "AIzaSyBidxKo98boZOfCM2l9Y8qmPL2MNJguKwc"}),
+    AgmCoreModule.forRoot({apiKey: "AIzaSyBidxKo98boZOfCM2l9Y8qmPL2MNJguKwc", libraries: ['places']}),
     app_routing
   ],
   providers: [],

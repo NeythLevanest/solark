@@ -8,12 +8,12 @@ const app_routes: Routes =[
         children:[
             {path:'metrics', component:MetricsPageComponent},
             {path:'info', component:MetricsPageComponent},
-            
-
         ]
 
 
     },
+    {path:'', pathMatch:'full', redirectTo:'app'},
+    {path:'**', pathMatch:'full', redirectTo:'app'}
     
 ];
 

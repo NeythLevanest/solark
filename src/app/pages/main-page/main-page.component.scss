@@ -1,12 +1,70 @@
+.container-rigth
+{
+}
+.align-btn
+{
+    
+    display:flex;
+    justify-content: space-around;
+}
+.btn-size-sm{
+    width: 100%;
+    color: rgba(255, 255, 255);
+}
+.btn-size-sm.hover
+{
+    
+}
+
+.title-format{
+    padding: 30px 0 30px 0;
+}
+.title-format > h4
+{
+    font-size: 2.5rem;
+    font-family: 'Century Gothic', Arial, Helvetica,  sans-serif;
+    list-style: none;
+    font-weight: bold;
+    color: rgba(36, 36, 36, 0.84) !important;
+}
+.border-nav
+{
+    text-align: center;
+    align-content: space-around;
+    width: 100%;
+    background-color: rgba(0, 85, 182);
+    color: rgb(255, 255, 255) !important;
+    margin: 10px 0 10px 0;
+    padding: 5px 0 5px 0;
+    border-top: solid 0.05rem rgba(122, 122, 122, 0.5);
+    border-bottom: solid 0.05rem rgba(122, 122, 122, 0.5);
+}
+
+.btn-dimension{
+   width: 100%;
+   margin-top: 20px;
+   padding: 20px 0 20px 0; 
+}
+.form-size
+{
+    position: relative;
+    width: 95%;
+    margin: auto;
+}
 .search-bar
 {
-    padding: 0 2vh 10px 2vh;
+    top: 80px;
+    left: 10px;
+    min-width: 350px;
+    width: 45% !important;
+    padding: 0 4vh 10px 2vh;
+    position: absolute;
+    z-index: 9999;
 }
 
 .mapa {
-    height: 70vh !important;
+    height: 90vh !important;
     width: 100%;
-    
 }
 
 .container {
@@ -104,3 +162,33 @@ input[type='checkbox'] { display: none; overflow: hidden;}
 .scroll-vertical::-webkit-scrollbar {
     display: none;
 }
+
+.hiddenCharBD{
+    display: none;
+}
+.hiddenCharBW{
+    display: none;
+}
+.hiddenCharBM{
+    display: none;
+}
+.hiddenCharBY{
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+
+    .mapa {
+        height: 45vh !important;
+        width: 100%;
+    }
+    .title-format > h4
+    {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+  }

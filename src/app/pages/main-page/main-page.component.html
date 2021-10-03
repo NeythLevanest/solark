@@ -4,7 +4,7 @@
         
     </div>
     <div class = "map-body row">
-        <div class= "col-6">
+        <div class= " col-sm">
             <div class="form-group search-bar">
                 <label></label>
                 <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Ingresa una localización" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
@@ -14,49 +14,112 @@
                   (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map>
         </div>
-        <div class="col-6">
-            <div class="">
+        <div class="col-sm container-rigth">
+            <div class="form-size">
 
-                <div>
+                <div class="">
                     <form [formGroup]="formParameters" (ngSubmit)="procesarDatos()">
-                        <div class="">
-                          <strong>Ingresa parámetros de búsqueda</strong>
+                        <div class="title-format">
+                          <h4>Ingresa parámetros de búsqueda</h4>
                         </div>
       
-                        <div class="">
-                                <div class="form-group row">
+                        <div class="row form-size">
+                                <div class="form-group row col-sm">
                                     <label class="col-sm-4 col-form-label">Desde</label>
                                     <div class="col-sm-8">
                                         <input formControlName="startDate" class="form-control" type="date" placeholder="Ingrese la fecha de Inicio">
                                     </div>
                                 </div>
       
-                                <div class="form-group row">
+                                <div class="form-group row col-sm">
                                     <label class="col-sm-4 col-form-label">Hasta</label>
                                     <div class="col-sm-8">
-                                        <input formControlName="endDate" class="form-control" type="date" placeholder="Ingrese la fecha de Fin">
+                                        <input formControlName="endDate" class="form-control" type="date" placeholder="Ingrese la fecha de Fin" max="2020-12-31">
                                     </div>
                                 </div>
       
                         </div>
                         <div class="">
-                          <button type="submit" class="btn btn-primary">Consultar</button>
+                          <button type="submit" class="btn btn-secondary btn-dimension">Consultar</button>
                         </div>
                       </form>
                 </div>
+                
+                <div class="align-btn border-nav ">
+                    <div class=" col-sm">
+                        <button class="btn btn-ligth btn-size-sm" (click)="generateChartByDay()">Día</button>
+                    </div>
+                    <div class=" col-sm">
+                        <button class="btn btn-ligth btn-size-sm" (click)="generateChartByWeek()">Semana</button>
+                    </div>
+                    <div class=" col-sm">
+                        <button class="btn btn-ligth btn-size-sm" (click)="generateChartByMes()">Mes</button>
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-ligth btn-size-sm" (click)="generateChartByAnio()">Año</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="" [ngClass]="_chartService.hiddenModalBD">
+                        <canvas id="canvas">
+                            {{chartDaily}}
+                        </canvas>
+                    </div>
+                    <div class="" [ngClass]="_chartService.hiddenModalBW">
+                        <canvas id="canvas3">
+                            {{chartWeek}}
+                        </canvas>
+                    </div>
+                    <div class="" [ngClass]="_chartService.hiddenModalBM">
+                        <canvas id="canvas1">
+                            {{chartMensual}}
+                        </canvas>
+                    </div>
+                    <div class="" [ngClass]="_chartService.hiddenModalBY">
+                        <canvas id="canvas2">
+                            {{chartAnual}}
+                        </canvas>
+                    </div>
+                </div>
+
                 <!--START COLLAPSEABLE-->
-                <div class="wrap-collabsible">
+                <div class="wrap-collabsible" (click)="ocultarGraficas()">
                     <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
                     <input id="collapsible" class="toggle" type="checkbox">
-                    <label for="collapsible" class="lbl-toggle">Datos Personales
-                        <br><span>De click aquí para registrar sus datos personales.</span>
+                    <label for="collapsible" class="lbl-toggle">Ahorro Generado del Mes
+                        <br><span>De click aquí para conocer cuánto ahorro puede general.</span>
                     </label>
                     <div class="collapsible-content">
                         <div class="content-inner">
                             <div class="page-content page-container" id="page-content">
                                 <div class="padding">
                                     <div class="mb-5">
-                                        
+                                       
+                                          
+                                    </div>
+                                </div>
+                            </div>        
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <!--END COLLAPSEABLE-->
+
+                <!--START COLLAPSEABLE-->
+                <div class="wrap-collabsible" (click)="ocultarGraficas()">
+                    <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
+                    <input id="collapsible1" class="toggle" type="checkbox">
+                    <label for="collapsible1" class="lbl-toggle">Producción promedio de Energía
+                        <br><span>De click aquí para conocer cuánto puede producir de Energía.</span>
+                    </label>
+                    <div class="collapsible-content">
+                        <div class="content-inner">
+                            <div class="page-content page-container" id="page-content">
+                                <div class="padding">
+                                    <div class="mb-5">
+                                       
+                                          
                                     </div>
                                 </div>
                             </div>        

@@ -73,23 +73,25 @@
                 <div class="container-rigth vertical-scroll">
                     <div>
                         <div class="card" [ngClass]="_chartService.hiddenModalPOND">
-                            <label>Ahorro Generado del Mes:$ {{ahorroMensual}}   Producción promedio de Energía:{{potenciaMensual}} Watts
-                            </label>
                             <div class="row">
-                                <div class="col-sm">
-                                    <canvas class = "chart-size" id="canvas4">
-                                        {{chartPROM}}
-                                    </canvas>
+                                
+                                <div class="Title-Result">
+                                    <label>
+                                        Producción de Energía:<span>{{potenciaMensual}} Watts</span>
+                                    </label>
+                                    <label>
+                                        Ahorro Generado del Mes: <span>$ {{ahorroMensual}}</span>
+                                  </label>
                                 </div>
-    
-                                <div class="col-sm">
+
+                                <!--div class="col-sm">
                                     <canvas class = "chart-size" id="canvas5">
                                         {{chartSAVE}}
                                     </canvas>
-                                </div>
+                                </div-->
                             </div>
-                           
                         </div>
+
                         <div class="" [ngClass]="_chartService.hiddenModalBD">
                             <canvas id="canvas">
                                 {{chartDaily}}
@@ -110,37 +112,42 @@
                                 {{chartAnual}}
                             </canvas>
                         </div>
-
-
-
-
-    
-                        
-    
-
-
-
                     </div>
-                    
-    
-                    
 
-
-
-
-
-
-
-
+                    <!--START COLLAPSEABLE-->
+                    <div class="wrap-collabsible">
+                        <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
+                        <input id="collapsible" class="toggle" type="checkbox">
+                        <label for="collapsible" class="lbl-toggle">Consulta aquí las recomendaciones
+                            <br><span>Conoce las alternativas disponibles para optimizar tu consumo de energía solar.</span>
+                        </label>
+                        <div class="collapsible-content">
+                            <div class="content-inner">
+                                <div class="page-content page-container" id="page-content">
+                                    <div class="padding">
+                                        <div class="mb-5">
+                                            <ul>
+                                                <li>
+                                                    En el punto de menor irradiancia hay un déficit de energía, deberías conseguir
+                                                    un acumulador de batería.
+                                                </li>
+                                                <li>
+                                                    En el punto de mayor irradiancia hay un superavit de energía, deberías aprovechar
+                                                    y comercializar la energía.
+                                                </li>
+                                            </ul>
+                                            
+                                        </div>
+                                    </div>
+                                </div>        
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END COLLAPSEABLE-->
                 </div>
 
                 
-
-
-
-                
-            
-            
         </div>
         
     </div>

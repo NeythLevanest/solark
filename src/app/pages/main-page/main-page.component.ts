@@ -192,7 +192,7 @@ export class MainPageComponent implements OnInit {
         console.log(this.valoresAñoMesDia);
 
 
-        this.calculaPotenciaPromedioSolar(this.valoresAñoMesDia, this.valoresAñoMesDia);
+        this.calculaPotenciaPromedioSolar(this.valoresAñoMesDia, this.valoresT2MAñoMesDia,);
 
         this.procesarDatosPorSemana()
         this.procesarDatosPorMes();
@@ -359,51 +359,36 @@ export class MainPageComponent implements OnInit {
   {
     this._chartService.mostrarCharByPROM();
 
-    if(this.chartPROM)
-    {
-      this.chartPROM.destroy();
-    }
+    
     if(this.chartSAVE)
     {
       this.chartSAVE.destroy();
     }
     
-    this.chartPROM = new Chart('canvas4',{
-          type:'doughnut',
-          data: {
-            labels:["Promedio", "Máximo"],
-            datasets:[
-              {
-                label:"Promedio de Potencia Mensual",
-                data: [this.potenciaMensual, this.potenciaMensualMáxima],
-                backgroundColor:[
-                  'rgb(0, 114, 255)',
-                  'rgb(245, 245, 245)'
-                ],
-                hoverOffset:2,
-                weight:0.5
-              }
-            ]
-          }
-    });
 
     this.chartSAVE = new Chart('canvas5',{
-      type:'doughnut',
+      type:'bar',
       data: {
         labels:["Ahorro", "Máximo"],
         datasets:[
           {
+            indexAxis:'y',
             label:"Ahorro Mensual",
             data: [this.ahorroMensual, this.ahorroMensualMáxima],
+            
             backgroundColor:[
+              'rgba(1, 51, 100, 0.8)',
+              'rgba(245, 245, 245, 0.8)'
+            ],
+            borderColor:[
               'rgb(101, 255, 0)',
               'rgb(245, 245, 245)'
             ],
-            hoverOffset:2,
-            weight:0.5
+            
           }
         ]
       }
+      
     });
 
     
@@ -536,6 +521,7 @@ export class MainPageComponent implements OnInit {
     this._chartService.ocultarCharByMonth();
     this._chartService.ocultarCharByYear();
     this._chartService.ocultarCharByDay();
+    this._chartService.ocultarCharByPROM();
   }
 
 

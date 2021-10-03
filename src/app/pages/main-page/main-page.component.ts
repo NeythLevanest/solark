@@ -1,6 +1,5 @@
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
-import { MapPageComponent } from '../map-page/map-page.component';
 import { Coordenada } from '../../models/Coordenada';
 import { RequestServicesService } from '../../services/request-services.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -30,11 +29,14 @@ export class MainPageComponent implements OnInit {
   parameter!:DatosSolares;
   private geoCoder:any;
 
+  /*Gráficas segmentadas por frecuencia*/
   chartDaily!:Chart;
   chartMensual!:Chart;
   chartAnual!:Chart;
   chartWeek!:Chart;
+  /*FIN Gráficas segmentadas por frecuencia*/
   
+  /*Listas con datos procesados por frecuencia*/
   clavesAñoMesDia:any[]=[];
   valoresAñoMesDia:any[]=[];
 
@@ -46,6 +48,7 @@ export class MainPageComponent implements OnInit {
 
   clavesSemana:any[]=[];
   valoresSemana:any[]=[];
+  /*FIN Listas con datos procesados por frecuencia*/
 
   constructor(
     private mapsAPILoader:MapsAPILoader,
@@ -63,6 +66,7 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*NO TOCAR - Método responsable de procesar la búsqueda de la barra de búsqueda del mapa */
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -93,7 +97,7 @@ export class MainPageComponent implements OnInit {
     
   }
 
-
+  /*Método para asignar LATITUD y LONGITUD a variables globales*/
   public setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -104,6 +108,7 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  /*Método para asignar UN MARCADOR CON LATITUD y LONGITUD a variables globales AL DAR CLICK EN EL MAPA*/
   markerDragEnd($event: MouseEvent) {
     console.log($event);
     
@@ -112,6 +117,8 @@ export class MainPageComponent implements OnInit {
     this.getAddress(this.latitude, this.longitude);
   }
 
+  
+  /*Método para asignar OPTENER DIRECCIÓN*/
   getAddress(latitude:any, longitude:any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results:any, status:any) => {
       localStorage.setItem('addressHistory', results[0]);
@@ -130,6 +137,9 @@ export class MainPageComponent implements OnInit {
 
     });
   }
+
+  
+  /*Método para crear listas de Datos POR FRECUENCIA de IRRADIANCIA*/
   procesarDatos()
   {
 
@@ -172,6 +182,7 @@ export class MainPageComponent implements OnInit {
 
   }
 
+  /*Método para crear listas de Datos POR SEMANA de IRRADIANCIA*/
   procesarDatosPorSemana()
   {
     this.clavesSemana = [];
@@ -202,7 +213,7 @@ export class MainPageComponent implements OnInit {
   }
 
 
-
+/*Método para crear listas de Datos POR MES de IRRADIANCIA*/
   procesarDatosPorMes()
   {
     this.clavesAñoMes = [];
@@ -250,6 +261,7 @@ export class MainPageComponent implements OnInit {
     console.log(this.valoresAñoMes);
   }
 
+  /*Método para crear listas de Datos POR AÑO de IRRADIANCIA*/
   procesarDatosPorAño()
   {
     this.clavesAño = [];
@@ -297,6 +309,8 @@ export class MainPageComponent implements OnInit {
     console.log(this.valoresAño);
   }
 
+
+  /*Método para crear GRÁFICO de Datos POR DÍA de IRRADIANCIA*/
   generateChartByDay()
   {
     this._chartService.mostrarCharByDay();
@@ -316,7 +330,8 @@ export class MainPageComponent implements OnInit {
               {
                 label:"Curva de Irradiancia por Día",
                 data:Object.values(this.valoresAñoMesDia),
-                borderWidth:1,
+                borderWidth:2,
+                borderColor:"#3e95cd",
                 fill:false
               }
              
@@ -325,7 +340,7 @@ export class MainPageComponent implements OnInit {
         });
         
   }
-
+ /*Método para crear GRÁFICO de Datos POR SEMANA de IRRADIANCIA*/
   generateChartByWeek()
   {
     this._chartService.mostrarCharByWeek();
@@ -345,7 +360,8 @@ export class MainPageComponent implements OnInit {
               {
                 label:"Curva de Irradiancia por Semana",
                 data:Object.values(this.valoresSemana),
-                borderWidth:1,
+                borderWidth:2,
+                borderColor:"#3e95cd",
                 fill:false
               }
              
@@ -354,6 +370,7 @@ export class MainPageComponent implements OnInit {
         });
   }
 
+ /*Método para crear GRÁFICO de Datos POR MES de IRRADIANCIA*/
   generateChartByMes()
   {
     this._chartService.mostrarCharByMonth();
@@ -373,7 +390,8 @@ export class MainPageComponent implements OnInit {
               {
                 label:"Curva de Irradiancia por Mes",
                 data:Object.values(this.valoresAñoMes),
-                borderWidth:1,
+                borderWidth:2,
+                borderColor:"#3e95cd",
                 fill:false
               }
              
@@ -383,6 +401,7 @@ export class MainPageComponent implements OnInit {
       
   }
 
+   /*Método para crear GRÁFICO de Datos POR AÑO de IRRADIANCIA*/
   generateChartByAnio()
   {
     this._chartService.mostrarCharByYear();
@@ -400,9 +419,10 @@ export class MainPageComponent implements OnInit {
             labels:Object.keys(this.clavesAño),
             datasets:[
               {
-                label:"Curva de Irradiancia por Año",
+                label:"Curva de Irradiancia por A",
                 data:Object.values(this.valoresAño),
-                borderWidth:1,
+                borderWidth:2,
+                borderColor:"#3e95cd",
                 fill:false
               }
              
@@ -412,6 +432,7 @@ export class MainPageComponent implements OnInit {
      
   }
 
+   /*Método para OCULTAR GRÁFICOS AL DAR CLICK EN COLLAPSABLE O CUALQUIER OTRO LADO DESEADO*/
   ocultarGraficas()
   {
     this._chartService.ocultarCharByWeek();

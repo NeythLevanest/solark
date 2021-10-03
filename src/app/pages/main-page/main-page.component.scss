@@ -1,5 +1,6 @@
 .container-rigth
 {
+    height: 50vh;
 }
 .align-btn
 {
@@ -161,6 +162,11 @@ input[type='checkbox'] { display: none; overflow: hidden;}
 }
 .scroll-vertical::-webkit-scrollbar {
     display: none;
+}
+
+
+.vertical-scroll{
+    overflow-y:auto;
 }
 
 .hiddenCharBD{

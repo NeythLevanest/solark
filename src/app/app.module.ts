@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AgmCoreModule } from '@agm/core';
 import { app_routing } from './app.routes';
@@ -20,7 +19,6 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 @NgModule({
   declarations: [
     AppComponent,
-    MapPageComponent,
     MainPageComponent,
     MetricsPageComponent,
     MetricsResultsComponent,

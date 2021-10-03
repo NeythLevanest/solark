@@ -15,14 +15,14 @@
             </agm-map>
         </div>
         <div class="col-sm container-rigth">
-            <div class="form-size">
+            <div class="title-format">
+                <h4>Ingresa parámetros de búsqueda</h4>
+              </div>
+            <div class="form-size  ">
 
                 <div class="">
                     <form [formGroup]="formParameters" (ngSubmit)="procesarDatos()">
-                        <div class="title-format">
-                          <h4>Ingresa parámetros de búsqueda</h4>
-                        </div>
-      
+                       
                         <div class="row form-size">
                                 <div class="form-group row col-sm">
                                     <label class="col-sm-4 col-form-label">Desde</label>
@@ -59,7 +59,7 @@
                         <button class="btn btn-ligth btn-size-sm" (click)="generateChartByAnio()">Año</button>
                     </div>
                 </div>
-
+            <div class="container-rigth vertical-scroll">
                 <div>
                     <div class="" [ngClass]="_chartService.hiddenModalBD">
                         <canvas id="canvas">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <!--END COLLAPSEABLE-->
-            
+            </div>
                 
             
             

@@ -162,23 +162,11 @@ export class MainPageComponent implements OnInit {
         this.procesarDatosPorSemana()
         this.procesarDatosPorMes();
         this.procesarDatosPorAño();
-        /*this.chart = new Chart('canvas',{
-          type:'line',
-          data: {
-            labels:Object.keys(this.parameter.ALLSKY_SFC_SW_DWN),
-            datasets:[
-              {
-                label:"Cálculo por días",
-                data:Object.values(this.parameter.ALLSKY_SFC_SW_DWN),
-                borderWidth:1,
-                fill:false
-              }
-             
-            ]
-          }
-        });
-        console.log(this.parameter);*/
+        this.generateChartByWeek();
 
+      },
+      (error:any) => {
+        alert('Error encontrado');
       });
 
 
@@ -326,7 +314,7 @@ export class MainPageComponent implements OnInit {
             labels:Object.keys(this.clavesAñoMesDia),
             datasets:[
               {
-                label:"Curva de Irradiancia",
+                label:"Curva de Irradiancia por Día",
                 data:Object.values(this.valoresAñoMesDia),
                 borderWidth:1,
                 fill:false
@@ -355,7 +343,7 @@ export class MainPageComponent implements OnInit {
             labels:Object.keys(this.clavesSemana),
             datasets:[
               {
-                label:"Curva de Irradiancia",
+                label:"Curva de Irradiancia por Semana",
                 data:Object.values(this.valoresSemana),
                 borderWidth:1,
                 fill:false
@@ -383,7 +371,7 @@ export class MainPageComponent implements OnInit {
             labels:Object.keys(this.clavesAñoMes),
             datasets:[
               {
-                label:"Curva de Irradiancia",
+                label:"Curva de Irradiancia por Mes",
                 data:Object.values(this.valoresAñoMes),
                 borderWidth:1,
                 fill:false
@@ -412,7 +400,7 @@ export class MainPageComponent implements OnInit {
             labels:Object.keys(this.clavesAño),
             datasets:[
               {
-                label:"Curva de Irradiancia",
+                label:"Curva de Irradiancia por Año",
                 data:Object.values(this.valoresAño),
                 borderWidth:1,
                 fill:false

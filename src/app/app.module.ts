@@ -15,6 +15,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { WrapCollapsibleComponent } from './pages/wrap-collapsible/wrap-collapsible.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     AgmCoreModule.forRoot({apiKey: "AIzaSyBidxKo98boZOfCM2l9Y8qmPL2MNJguKwc", libraries: ['places']}),
     app_routing
   ],

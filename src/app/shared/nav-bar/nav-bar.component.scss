@@ -1,3 +1,34 @@
 .navbar{
     height: 5.0rem;
 }
+
+.navbar-brand-logo{
+    height: 0.5 rem;
+    display: flex;
+}
+
+.bg-blue {
+
+    background-color: #013364 !important;
+}
+
+.displayEnd{
+
+    display: flex !important;
+    justify-content: end !important;
+    
+
+}
+
+.display-tab{
+    text-align: end  !important;
+}
+
+.padding-name{
+    padding-right: 0.5rem;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: 70rem;
+}

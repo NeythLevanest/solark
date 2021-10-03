@@ -1,0 +1,7 @@
+{
+    "/api/*":{
+        "target":"https://power.larc.nasa.gov",
+        "secure":false,
+        "changeOrigin": true
+    }
+}

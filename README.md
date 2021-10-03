@@ -1,5 +1,7 @@
 # SolarkApp
 
+Video Link for the project: https://drive.google.com/drive/folders/1N46qVQnDon58ykLIOjuIAMvdurH3wCM4
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
 ## Development server

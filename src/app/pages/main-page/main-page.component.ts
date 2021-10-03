@@ -168,7 +168,8 @@ export class MainPageComponent implements OnInit {
 
         this.clavesAñoMesDia = Object.keys(this.parameter.ALLSKY_SFC_SW_DWN);
         this.valoresAñoMesDia = Object.values(this.parameter.ALLSKY_SFC_SW_DWN);
-        
+        console.log(this.valoresAñoMesDia);
+
         this.procesarDatosPorSemana()
         this.procesarDatosPorMes();
         this.procesarDatosPorAño();
@@ -181,6 +182,8 @@ export class MainPageComponent implements OnInit {
 
 
   }
+
+
 
   /*Método para crear listas de Datos POR SEMANA de IRRADIANCIA*/
   procesarDatosPorSemana()
@@ -440,4 +443,6 @@ export class MainPageComponent implements OnInit {
     this._chartService.ocultarCharByYear();
     this._chartService.ocultarCharByDay();
   }
+
 }
+

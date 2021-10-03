@@ -45,6 +45,11 @@
                       </form>
                 </div>
                 
+
+
+
+
+
                 <div class="align-btn border-nav ">
                     <div class=" col-sm">
                         <button class="btn btn-ligth btn-size-sm" (click)="generateChartByDay()">Día</button>
@@ -59,76 +64,79 @@
                         <button class="btn btn-ligth btn-size-sm" (click)="generateChartByAnio()">Año</button>
                     </div>
                 </div>
-            <div class="container-rigth vertical-scroll">
-                <div>
-                    <div class="" [ngClass]="_chartService.hiddenModalBD">
-                        <canvas id="canvas">
-                            {{chartDaily}}
-                        </canvas>
+
+
+
+
+
+
+                <div class="container-rigth vertical-scroll">
+                    <div>
+                        
+                        <div class="" [ngClass]="_chartService.hiddenModalBD">
+                            <div>
+                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
+                                </label>
+                            </div>
+                            <canvas id="canvas">
+                                {{chartDaily}}
+                            </canvas>
+                        </div>
+                        <div class="" [ngClass]="_chartService.hiddenModalBW">
+                            <div>
+                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
+                                </label>
+                            </div>
+                            <canvas id="canvas3">
+                                {{chartWeek}}
+                            </canvas>
+                        </div>
+                        <div class="" [ngClass]="_chartService.hiddenModalBM">
+                            <div>
+                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
+                                </label>
+                            </div>
+                            <canvas id="canvas1">
+                                {{chartMensual}}
+                            </canvas>
+                        </div>
+                        <div class="" [ngClass]="_chartService.hiddenModalBY">
+                            <div>
+                                <label>Ahorro Generado del Mes:$39.36   Producción promedio de Energía:393.56 Kw
+                                </label>
+                            </div>
+                            <canvas id="canvas2">
+                                {{chartAnual}}
+                            </canvas>
+                        </div>
+
+
+
+
+    
+                        
+    
+
+
+
                     </div>
-                    <div class="" [ngClass]="_chartService.hiddenModalBW">
-                        <canvas id="canvas3">
-                            {{chartWeek}}
-                        </canvas>
-                    </div>
-                    <div class="" [ngClass]="_chartService.hiddenModalBM">
-                        <canvas id="canvas1">
-                            {{chartMensual}}
-                        </canvas>
-                    </div>
-                    <div class="" [ngClass]="_chartService.hiddenModalBY">
-                        <canvas id="canvas2">
-                            {{chartAnual}}
-                        </canvas>
-                    </div>
+                    
+    
+                    
+
+
+
+
+
+
+
+
                 </div>
 
-                <!--START COLLAPSEABLE-->
-                <div class="wrap-collabsible" (click)="ocultarGraficas()">
-                    <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
-                    <input id="collapsible" class="toggle" type="checkbox">
-                    <label for="collapsible" class="lbl-toggle">Ahorro Generado del Mes
-                        <br><span>De click aquí para conocer cuánto ahorro puede general.</span>
-                    </label>
-                    <div class="collapsible-content">
-                        <div class="content-inner">
-                            <div class="page-content page-container" id="page-content">
-                                <div class="padding">
-                                    <div class="mb-5">
-                                       
-                                          
-                                    </div>
-                                </div>
-                            </div>        
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-                <!--END COLLAPSEABLE-->
+                
 
-                <!--START COLLAPSEABLE-->
-                <div class="wrap-collabsible" (click)="ocultarGraficas()">
-                    <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
-                    <input id="collapsible1" class="toggle" type="checkbox">
-                    <label for="collapsible1" class="lbl-toggle">Producción promedio de Energía
-                        <br><span>De click aquí para conocer cuánto puede producir de Energía.</span>
-                    </label>
-                    <div class="collapsible-content">
-                        <div class="content-inner">
-                            <div class="page-content page-container" id="page-content">
-                                <div class="padding">
-                                    <div class="mb-5">
-                                       
-                                          
-                                    </div>
-                                </div>
-                            </div>        
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-                <!--END COLLAPSEABLE-->
-            </div>
+
+
                 
             
             

@@ -17,7 +17,9 @@ export class MainPageComponent implements OnInit {
   longitude!:number;
   zoom!:number;
   address!:string;
+  addressList:any[] = [];
   private geoCoder:any;
+
 
 
   constructor(
@@ -48,6 +50,8 @@ export class MainPageComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
+
+          this.getAddress(this.latitude, this.longitude);
         });
       });
     });
@@ -74,6 +78,7 @@ export class MainPageComponent implements OnInit {
 
   getAddress(latitude:any, longitude:any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results:any, status:any) => {
+      localStorage.setItem('addressHistory', results[0]);
       console.log(results);
       console.log(status);
       if (status === 'OK') {

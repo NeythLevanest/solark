@@ -10,6 +10,7 @@ import { app_routing } from './app.routes';
 import { MetricsPageComponent } from './pages/metrics-page/metrics-page.component';
 import { MetricsResultsComponent } from './pages/metrics-results/metrics-results.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { SeachHistoryComponent } from './pages/seach-history/seach-history.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
     MainPageComponent,
     MetricsPageComponent,
     MetricsResultsComponent,
-    NavBarComponent
+    NavBarComponent,
+    SeachHistoryComponent
   ],
   imports: [
     BrowserModule,

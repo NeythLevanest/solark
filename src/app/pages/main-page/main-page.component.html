@@ -1,22 +1,82 @@
 <div>
     <div class = "map-header">
         <app-nav-bar></app-nav-bar>
-        <div class="form-group search-bar">
-            <label></label>
-            <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Ingresa una localización" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+        
+    </div>
+    <div class = "map-body row">
+        <div class= "col-6">
+            <div class="form-group search-bar">
+                <label></label>
+                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Ingresa una localización" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+            </div>
+            <agm-map class="mapa" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map>
         </div>
+        <div class="col-6">
+            <div class="">
+
+                <div>
+                    <form [formGroup]="formParameters" (ngSubmit)="procesarDatos()">
+                        <div class="">
+                          <strong>Ingresa parámetros de búsqueda</strong>
+                        </div>
+      
+                        <div class="">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Desde</label>
+                                    <div class="col-sm-8">
+                                        <input formControlName="startDate" class="form-control" type="date" placeholder="Ingrese la fecha de Inicio">
+                                    </div>
+                                </div>
+      
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Hasta</label>
+                                    <div class="col-sm-8">
+                                        <input formControlName="endDate" class="form-control" type="date" placeholder="Ingrese la fecha de Fin">
+                                    </div>
+                                </div>
+      
+                        </div>
+                        <div class="">
+                          <button type="submit" class="btn btn-primary">Consultar</button>
+                        </div>
+                      </form>
+                </div>
+                <!--START COLLAPSEABLE-->
+                <div class="wrap-collabsible">
+                    <!--for es el nombre del collapsible, id es una propiedad unica para cada uno como identificador-->
+                    <input id="collapsible" class="toggle" type="checkbox">
+                    <label for="collapsible" class="lbl-toggle">Datos Personales
+                        <br><span>De click aquí para registrar sus datos personales.</span>
+                    </label>
+                    <div class="collapsible-content">
+                        <div class="content-inner">
+                            <div class="page-content page-container" id="page-content">
+                                <div class="padding">
+                                    <div class="mb-5">
+                                        
+                                    </div>
+                                </div>
+                            </div>        
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <!--END COLLAPSEABLE-->
+            
+                
+            
+            
+        </div>
+        
     </div>
-    <div class = "map-body">
-        <agm-map class="mapa" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-              (dragEnd)="markerDragEnd($event)"></agm-marker>
-        </agm-map>
-    </div>
-    <div class = "map-footer">
+    <!--div class = "map-footer">
         <div>
-            <button class="btn btn-primary" type="button">Consultar</button>
+            <button class="btn btn-primary" type="button" (click)="procesarDatos()">Consultar</button>
         </div>
-    </div>
+    </div-->
 </div>
        
    

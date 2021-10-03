@@ -1,6 +1,8 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Coordenada } from 'src/app/models/Coordenada';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { RequestServicesService } from '../../services/request-services.service';
 
 
 @Component({
@@ -13,7 +15,8 @@ export class MapPageComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef!: ElementRef;
 
- 
+    
+  cordenada!:Coordenada;
   ubicacionCentral!: Coordenada;
   ubicationSelected!: Coordenada;
   latitude!:number;
@@ -26,14 +29,15 @@ export class MapPageComponent implements OnInit {
 
   constructor(
     private mapsAPILoader:MapsAPILoader,
-    private ngZone:NgZone
+    private ngZone:NgZone,
+    public _requestNASA:RequestServicesService
   )
   {
   
   }
 
   ngOnInit(): void {
-    this.ubicacionCentral = new Coordenada(-1.8107958,-79.5041315, 14);
+    //this.ubicacionCentral = new Coordenada(-1.8107958,-79.5041315, 14);
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -60,8 +64,8 @@ export class MapPageComponent implements OnInit {
 
 
   mapClicked($event: MouseEvent) {
-    let coord = new Coordenada($event.coords.lat, $event.coords.lng, 12);
-    this.coordenadas.push(coord);
+    //let coord = new Coordenada($event.coords.lat, $event.coords.lng, 12);
+    //this.coordenadas.push(coord);
   }
 
   public setCurrentLocation() {
@@ -99,4 +103,6 @@ export class MapPageComponent implements OnInit {
 
     });
   }
+
+  
 }

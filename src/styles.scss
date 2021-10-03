@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+.texto
+{
+    color:blue;
+}
+.aligment-forms
+{
+    padding: 4.0rem;    
+}
+.title-forms
+{
+    font-size: 1.5rem;
+    padding: 1.0rem 0px 1.0rem 0px;
+}
+.page-sidenav-color
+{
+    background-color: #f5f5f6;
+}
+
+.btn-primary
+{
+    background-color:#014D81;
+    border: #014D81;
+}
+
+.dashboard-width
+{
+    min-width: 100%;
+}
+
+.card-kpi
+{
+    min-width: 100%;
+    height: 5rem;
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+}
+.card-kpi-title{
+    color: #99a0ac;
+}
+.card-kpi-num{
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.display-tab{
+    text-align: end;
+}
+.padding-name{
+    padding-right: 0.5rem;
+}
+
+/*FORMATO DE MULTISELECT*/
+.searchicon {
+    color:#5CB85C;
+}
+
+.items-collection{
+    margin:10px 0 0 0;
+}
+.items-collection, label.btn-default.active{
+    background-color:#007ba7;
+    color:#FFF;
+}
+.items-collection label.btn-default{
+    width:100%;
+    border:1px solid #919191;
+    border-radius: 5px;
+    color: #818181;
+}
+.items-collection label .itemcontent{
+    width:100%;
+    display: flex;
+}
+.items-collection .btn-group{
+    width:100%
+}
+.items-collection p{
+    padding-top: 10px;
+    font-size: 8pt;
+}
+
+.btn-large{
+    width: 100%;
+}
+/*FORMATO DE MULTISELECT*/
+.display-tab{
+    text-align: end;
+}
+.padding-name{
+    padding-right: 0.5rem;
+}
+.display-check-conditions
+{
+    display: unset !important;
+}
+.label-check-conditions-padding
+{
+    padding-left: 1.2rem !important;
+    margin-left: 1.2rem !important;
+}

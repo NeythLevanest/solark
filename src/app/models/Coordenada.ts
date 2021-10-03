@@ -1,8 +1,10 @@
 export class Coordenada{
     constructor(
-        public lat: number,
         public long: number,
-        public zoom: number,
+        public lat: number,
+        public frecuencia:string,
+        public startDate:string,
+        public endDate:string
     ){
        
     }
